@@ -1,19 +1,27 @@
 import { useState, useEffect, use } from "react";
 import "./App.css";
+import "./components/Fetches.js";
 
 export default function UserInput() {
   const [inputEmail, setInputEmail] = useState("");
   const [inputUserName, setInputUserName] = useState("");
+  const [inputRiotGames, setInputRiotGames] = useState("");
   const [data, setData] = useState("");
 
   function Register(Email, userName) {
-    console.log("Данные для регистрации:", { Email, userName });
-    console.log(inputEmail, inputUserName);
+    console.log(inputEmail, inputUserName, inputRiotGames);
   }
 
   return (
     <main>
       <div>
+        <input
+          placeholder="RiotGames#RU1"
+          style={{ border: "2px solid pink" }}
+          value={inputRiotGames}
+          onChange={(e) => setInputRiotGames(e.target.value)}
+        />
+        <br />
         <input
           placeholder="Email"
           style={{ border: "2px solid violet" }}
