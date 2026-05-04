@@ -1,6 +1,7 @@
 import { useState, useEffect, use } from "react";
 import "./App.css";
 import "./components/Fetches.js";
+import { fetchPost } from "./components/Fetches.js";
 
 export default function UserInput() {
   const [inputEmail, setInputEmail] = useState("");
@@ -8,8 +9,15 @@ export default function UserInput() {
   const [inputRiotGames, setInputRiotGames] = useState("");
   const [data, setData] = useState("");
 
-  function Register(Email, userName) {
-    console.log(inputEmail, inputUserName, inputRiotGames);
+  console.log(inputEmail, inputUserName, inputRiotGames);
+
+  async function FetchPostUserData() {
+    const createdUser = await fetchPost.postUserData({
+      name: inputUserName,
+      email: inputEmail,
+      riotUser: inputRiotGames,
+    });
+    return FetchPostUserData;
   }
 
   return (
@@ -36,7 +44,7 @@ export default function UserInput() {
           onChange={(e) => setInputUserName(e.target.value)}
         />
         <br />
-        <button onClick={Register}>Register</button>
+        <button onClick={FetchPostUserData}>Register</button>
       </div>
     </main>
   );
