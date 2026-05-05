@@ -1,7 +1,7 @@
 export const fetchPost = {
   async postUserData(userData) {
     const response = await fetch(
-      "https://chuck-explorer-examinations-sites.trycloudflare.com/api/users",
+      "https://gamernetwork-production.up.railway.app/api/users",
       {
         method: "POST",
         headers: {
@@ -13,5 +13,13 @@ export const fetchPost = {
 
     const data = await response.json();
     return data;
+  },
+};
+
+export const fetchGet = {
+  async getUser() {
+    const res = await fetch(
+      `https://gamernetwork-production.up.railway.app/api/users`,
+    );
   },
 };
