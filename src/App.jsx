@@ -10,8 +10,25 @@ export default function UserInput() {
   const [users, setUsers] = useState([]);
 
   console.log(inputEmail, inputUserName, inputRiotGames);
+  const isUserNameValid = inputUserName.length >= 3;
+  const isPaswordValid = inputPassword.length >= 6;
+  const isRiotValid = inputRiotGames.includes("#");
+  const isEmailValid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(inputEmail);
+
+  const isFormValid =
+    isUserNameValid && isPaswordValid && isRiotValid && isUserNameValid;
+
+  function getInputClass(value, isValid) {
+    if (!value) return "";
+    return isValid ? "inputValid" : "inputInvalid";
+  }
 
   async function FetchPostUserData() {
+    if (!isFormValid) {
+      alert("Данные заполнены неправильно");
+      return;
+    }
+
     await fetchPost.postUserData({
       email: inputEmail,
       password: inputPassword,
@@ -46,31 +63,40 @@ export default function UserInput() {
         </div>
         <div>
           <input
+            type="email"
             placeholder="Email"
-            value={inputEmail}
+            defaultValue={inputEmail}
             onChange={(e) => setInputEmail(e.target.value)}
+            className={getInputClass(inputEmail, isEmailValid)}
           />
           <br />
           <input
             type="password"
             placeholder="Password"
-            value={inputPassword}
+            defaultValue={inputPassword}
             onChange={(e) => setInputPassword(e.target.value)}
+            className={getInputClass(inputPassword, isPaswordValid)}
           />
           <br />
           <input
             placeholder="userName"
-            value={inputUserName}
-            onChange={(e) => setInputUserName(e.target.value)}
+            defaultValue={inputUserName}
+            onBlur={(e) => setInputUserName(e.target.value)}
+            className={getInputClass(inputUserName, isUserNameValid)}
           />
           <br />
           <input
             placeholder="RiotGames#RU1"
-            value={inputRiotGames}
-            onChange={(e) => setInputRiotGames(e.target.value)}
+            defaultValue={inputRiotGames}
+            onBlur={(e) => setInputRiotGames(e.target.value)}
+            className={getInputClass(inputRiotGames, isRiotValid)}
           />
           <br />
-          <button onClick={FetchPostUserData} className="registerBtn">
+          <button
+            onClick={FetchPostUserData}
+            className="registerBtn"
+            disabled={!isFormValid}
+          >
             Register
           </button>
         </div>

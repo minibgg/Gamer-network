@@ -94,3 +94,21 @@ input:focus{
   transform: scale(0.97);
   box-shadow: 0 3px 8px rgba(127, 61, 255, 0.45);
 }
+
+.inputValid {
+  border-color: var(--color-success);
+  box-shadow: 0 0 0 3px rgba(98, 211, 139, 0.15);
+}
+
+.inputInvalid {
+  border-color: var(--color-error);
+  background-color: rgba(255, 95, 122, 0.08);
+  box-shadow: 0 0 0 3px rgba(255, 95, 122, 0.15);
+}
+
+.registerBtn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
