@@ -1,10 +1,7 @@
 import { useState, useEffect, use } from "react";
 import "./App.css";
 import "./components/Fetches.js";
-<<<<<<< HEAD
-=======
-import { fetchPost } from "./components/Fetches.js";
->>>>>>> SCRUM-14-create-add-user-form-react
+import { fetchGet, fetchPost } from "./components/Fetches.js";
 
 export default function UserInput() {
   const [inputEmail, setInputEmail] = useState("");
@@ -12,10 +9,6 @@ export default function UserInput() {
   const [inputRiotGames, setInputRiotGames] = useState("");
   const [data, setData] = useState("");
 
-<<<<<<< HEAD
-  function Register(Email, userName) {
-    console.log(inputEmail, inputUserName, inputRiotGames);
-=======
   console.log(inputEmail, inputUserName, inputRiotGames);
 
   async function FetchPostUserData() {
@@ -24,9 +17,9 @@ export default function UserInput() {
       email: inputEmail,
       riotUser: inputRiotGames,
     });
-
+    const users = fetchGet.getUsers();
+    console.log(users);
     return FetchPostUserData;
->>>>>>> SCRUM-14-create-add-user-form-react
   }
 
   return (
@@ -53,11 +46,7 @@ export default function UserInput() {
           onChange={(e) => setInputUserName(e.target.value)}
         />
         <br />
-<<<<<<< HEAD
-        <button onClick={Register}>Register</button>
-=======
         <button onClick={FetchPostUserData}>Register</button>
->>>>>>> SCRUM-14-create-add-user-form-react
       </div>
     </main>
   );
