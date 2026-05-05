@@ -27,7 +27,23 @@ export default function UserInput() {
   return (
     <main>
       <div className="mainBorder">
-        <div>Gamer network</div>
+        <div
+          style={{
+            color: "#9a5cff",
+            fontSize: "25px",
+          }}
+        >
+          Gamer network
+        </div>
+        <div
+          style={{
+            color: "#d8d3df",
+            fontSize: "12px",
+            padding: "8px 0px 30px 0px",
+          }}
+        >
+          Создание аккаунта
+        </div>
         <div>
           <input
             placeholder="Email"
@@ -54,7 +70,9 @@ export default function UserInput() {
             onChange={(e) => setInputRiotGames(e.target.value)}
           />
           <br />
-          <button onClick={FetchPostUserData}>Register</button>
+          <button onClick={FetchPostUserData} className="registerBtn">
+            Register
+          </button>
         </div>
       </div>
     </main>
