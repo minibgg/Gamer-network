@@ -21,7 +21,6 @@ export const fetchGet = {
     const res = await fetch(
       `https://gamernetwork-production.up.railway.app/api/users`,
     );
-    const data = res.json();
-    return data;
+    return res.json();
   },
 };

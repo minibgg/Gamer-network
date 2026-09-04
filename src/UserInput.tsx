@@ -38,7 +38,7 @@ export default function UserInput() {
     const freshUsers = await fetchGet.getUsers();
     setUsers(freshUsers);
 
-    console.log(freshUsers);
+    console.log(users);
   }
 
   function GInput(props: any) {

@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { fetchGet } from "../components/Fetches.ts";
 import "./Users.css";
-import type { User } from "../utils/Interfaces.ts";
+import type { User } from "../types/Interfaces.ts";
 
 export default function Users() {
   const [users, setUsers] = useState([]);
