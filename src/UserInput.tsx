@@ -1,7 +1,6 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
 import "./UserInput.css";
-import { fetchGet, fetchPost } from "./components/Fetches.js";
+import { fetchGet, fetchPost } from "./components/Fetches.ts";
 
 export default function UserInput() {
   const [inputEmail, setInputEmail] = useState("");
@@ -9,7 +8,6 @@ export default function UserInput() {
   const [inputUserName, setInputUserName] = useState("");
   const [inputRiotGames, setInputRiotGames] = useState("");
   const [users, setUsers] = useState([]);
-  const navigate = useNavigate();
 
   console.log(inputEmail, inputUserName, inputRiotGames);
   const isUserNameValid = inputUserName.length >= 3;
@@ -20,7 +18,7 @@ export default function UserInput() {
   const isFormValid =
     isUserNameValid && isPaswordValid && isRiotValid && isEmailValid;
 
-  function getInputClass(value, isValid) {
+  function getInputClass(value: any, isValid: any) {
     if (!value) return "";
     return isValid ? "inputValid" : "inputInvalid";
   }
@@ -41,6 +39,17 @@ export default function UserInput() {
     setUsers(freshUsers);
 
     console.log(freshUsers);
+  }
+
+  function GInput(props: any) {
+    return (
+      <input
+        placeholder={props.placeholder}
+        value={props.value}
+        onChange={(e) => props.setInput(e.target.value)}
+        className={getInputClass(props.value, props.isValid)}
+      />
+    );
   }
 
   return (
@@ -64,34 +73,32 @@ export default function UserInput() {
           Создание аккаунта
         </div>
         <div>
-          <input
-            type="email"
+          <GInput
             placeholder="Email"
-            defaultValue={inputEmail}
-            onChange={(e) => setInputEmail(e.target.value)}
-            className={getInputClass(inputEmail, isEmailValid)}
+            value={inputEmail}
+            setInput={setInputEmail}
+            isValid={isEmailValid}
           />
           <br />
-          <input
-            type="password"
+          <GInput
             placeholder="Password"
-            defaultValue={inputPassword}
-            onChange={(e) => setInputPassword(e.target.value)}
-            className={getInputClass(inputPassword, isPaswordValid)}
+            value={inputPassword}
+            setInput={setInputPassword}
+            isValid={isPaswordValid}
           />
           <br />
-          <input
-            placeholder="userName"
-            defaultValue={inputUserName}
-            onBlur={(e) => setInputUserName(e.target.value)}
-            className={getInputClass(inputUserName, isUserNameValid)}
+          <GInput
+            placeholder="UserName"
+            value={inputUserName}
+            setInput={setInputUserName}
+            isValid={isUserNameValid}
           />
           <br />
-          <input
+          <GInput
             placeholder="RiotGames#RU1"
-            defaultValue={inputRiotGames}
-            onBlur={(e) => setInputRiotGames(e.target.value)}
-            className={getInputClass(inputRiotGames, isRiotValid)}
+            value={inputRiotGames}
+            setInput={setInputRiotGames}
+            isValid={isRiotValid}
           />
           <br />
           <button

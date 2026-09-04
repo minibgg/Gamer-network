@@ -1,6 +1,7 @@
 import { useState } from "react";
-import { fetchGet } from "../components/Fetches.js";
+import { fetchGet } from "../components/Fetches.ts";
 import "./Users.css";
+import type { User } from "../utils/Interfaces.ts";
 
 export default function Users() {
   const [users, setUsers] = useState([]);
@@ -24,7 +25,7 @@ export default function Users() {
         Load Users
       </button>
       <div className="usersBorder">
-        {users.map((user) => (
+        {users.map((user: User) => (
           <div key={user.id} className="userBorder">
             <div>{user.email}</div>
             <div>{user.role}</div>

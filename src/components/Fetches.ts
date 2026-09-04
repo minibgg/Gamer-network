@@ -1,5 +1,5 @@
 export const fetchPost = {
-  async postUserData(userData) {
+  async postUserData(userData: any) {
     const response = await fetch(
       "https://gamernetwork-production.up.railway.app/api/users",
       {
@@ -17,9 +17,11 @@ export const fetchPost = {
 };
 
 export const fetchGet = {
-  async getUser() {
+  async getUsers() {
     const res = await fetch(
       `https://gamernetwork-production.up.railway.app/api/users`,
     );
+    const data = res.json();
+    return data;
   },
 };
